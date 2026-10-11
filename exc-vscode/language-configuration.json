@@ -18,8 +18,8 @@
     "offSide": true
   },
   "indentationRules": {
-    "increaseIndentPattern": "^\\s*(?:[a-zA-Z_][a-zA-Z0-9_]*\\s*:|@ifblock\\b|@whileblock\\b|else\\b.*:|else\\s+if\\b.*:).*$",
-    "decreaseIndentPattern": "^\\s*(?:@endblock\\b|@endwhileblock\\b).*$"
+    "increaseIndentPattern": "^\\s*(?:[a-zA-Z_][a-zA-Z0-9_]*\\s*:|@ifblock\\b|@whileblock\\b|else\\b.*:|else\\s+if\\b.*:|if\\b.*:|while\\b.*:).*$",
+    "decreaseIndentPattern": "^\\s*(?:@endblock\\b).*$"
   },
   "onEnterRules": [
     {
@@ -47,11 +47,11 @@
       "action": { "indent": "indent" }
     },
     {
-      "beforeText": "^\\s*@endblock\\s*$",
-      "action": { "indent": "outdent" }
+      "beforeText": "^\\s*while\\b.*:\\s*$",
+      "action": { "indent": "indent" }
     },
     {
-      "beforeText": "^\\s*@endwhileblock\\s*$",
+      "beforeText": "^\\s*@endblock\\s*$",
       "action": { "indent": "outdent" }
     }
   ]

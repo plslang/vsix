@@ -1,14 +1,18 @@
 {
   "name": "pla-language",
   "displayName": "PLA Language",
-  "description": "Syntax highlighting and language support for .pla files",
-  "version": "0.3.0",
+  "description": "Syntax highlighting and basic diagnostics for .pla files",
+  "version": "0.4.0",
   "publisher": "potemkin",
   "engines": {
     "vscode": "^1.80.0"
   },
   "categories": [
     "Programming Languages"
+  ],
+  "main": "./src/extension.js",
+  "activationEvents": [
+    "onLanguage:pla"
   ],
   "contributes": {
     "languages": [
