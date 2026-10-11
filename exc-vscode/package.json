@@ -2,7 +2,7 @@
   "name": "pla-language",
   "displayName": "PLA Language",
   "description": "Syntax highlighting and language support for .pla files",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "publisher": "potemkin",
   "engines": {
     "vscode": "^1.80.0"

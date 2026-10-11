@@ -6,12 +6,15 @@
   "patterns": [
     { "include": "#comment" },
     { "include": "#string" },
+    { "include": "#directives" },
     { "include": "#using-directive" },
+    { "include": "#conditionals" },
     { "include": "#top-level" },
     { "include": "#function-definition" },
-    { "include": "#expression" }
+    { "include": "#statement" }
   ],
   "repository": {
+
     "comment": {
       "patterns": [
         {
@@ -34,6 +37,23 @@
       ]
     },
 
+    "directives": {
+      "patterns": [
+        {
+          "name": "keyword.control.directive.pla",
+          "match": "@(?:ifblock|endblock|whileblock|endwhileblock)\\b"
+        },
+        {
+          "name": "keyword.control.directive.known.pla",
+          "match": "@(?:synthetic|inline|noinline|deprecated|override)\\b"
+        },
+        {
+          "name": "keyword.control.directive.unknown.pla",
+          "match": "@[a-zA-Z_][a-zA-Z0-9_]*"
+        }
+      ]
+    },
+
     "using-directive": {
       "patterns": [
         {
@@ -47,11 +67,20 @@
       ]
     },
 
+    "conditionals": {
+      "patterns": [
+        {
+          "name": "keyword.control.conditional.pla",
+          "match": "\\b(?:else\\s+if|else|if)\\b"
+        }
+      ]
+    },
+
     "top-level": {
       "patterns": [
         {
           "name": "meta.global.pla",
-          "match": "^\\s*(global)\\s+(int|string)\\s+([a-zA-Z_][a-zA-Z0-9_]*)\\s*(=)\\s*(.*)$",
+          "match": "^\\s*(global)\\s+(int|string)\\s+([a-zA-Z_][a-zA-Z0-9_]*)\\s*(=)?\\s*(.*)$",
           "captures": {
             "1": { "name": "storage.modifier.global.pla" },
             "2": { "name": "storage.type.primitive.pla" },
@@ -84,11 +113,14 @@
       "patterns": [
         { "include": "#comment" },
         { "include": "#string" },
+        { "include": "#directives" },
+        { "include": "#conditionals" },
         { "include": "#declare-statement" },
         { "include": "#local-declaration" },
         { "include": "#assignment" },
         { "include": "#call-statement" },
         { "include": "#print-statement" },
+        { "include": "#cin-statement" },
         { "include": "#exit-statement" },
         { "include": "#expression" }
       ]
@@ -112,7 +144,7 @@
       "patterns": [
         {
           "name": "meta.declaration.local.pla",
-          "match": "\\b(int|string)\\s+([a-zA-Z_][a-zA-Z0-9_]*)\\s*(=)\\s*(.*)$",
+          "match": "\\b(int|string)\\s+([a-zA-Z_][a-zA-Z0-9_]*)\\s*(=)?\\s*(.*)$",
           "captures": {
             "1": { "name": "storage.type.primitive.pla" },
             "2": { "name": "variable.other.local.pla" },
@@ -157,6 +189,19 @@
           "match": "\\b(print|println)\\s*(\\()",
           "captures": {
             "1": { "name": "support.function.print.pla" },
+            "2": { "name": "punctuation.section.parens.begin.pla" }
+          }
+        }
+      ]
+    },
+
+    "cin-statement": {
+      "patterns": [
+        {
+          "name": "meta.cin.pla",
+          "match": "\\b(cin|cinline)\\s*(\\()",
+          "captures": {
+            "1": { "name": "support.function.cin.pla" },
             "2": { "name": "punctuation.section.parens.begin.pla" }
           }
         }
@@ -217,6 +262,10 @@
 
     "operator": {
       "patterns": [
+        {
+          "name": "keyword.operator.comparison.pla",
+          "match": "==|!=|<=|>=|<|>"
+        },
         {
           "name": "keyword.operator.arithmetic.pla",
           "match": "[+\\-*/]"
